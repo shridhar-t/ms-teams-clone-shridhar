@@ -1,0 +1,132 @@
+video{
+    height: 300px;
+    width: 400px;
+    object-fit: cover;
+    border:2.5px solid #7868E6;
+    border-radius: 10px;
+    margin: 5px;
+}
+ul{
+    color: #fff;
+    list-style: none;
+    margin-bottom: 0 !important;
+}
+::-webkit-scrollbar {
+    width: 7.5px;
+    height: 100%;
+    background-color: #1C1E20;
+}
+::-webkit-scrollbar-thumb {
+    height: 20%;
+    background-color: #7868E6;
+}
+#video-grid{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.room{
+    height: 100vh;
+    display: flex;
+}
+.room-left {
+    flex: 0.75;
+    display: flex;
+    flex-direction: column;
+}
+
+.room-right {
+    flex: 0.25;
+    background-color: #1C1E20;
+    border-left: 2px solid #7868E6;
+    display: flex;
+    flex-direction: column;
+}
+
+.room-left-video {
+    flex-grow: 1;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.room-left-action-bar {
+    background-color: #1C1E20;
+    color: #fff;
+    display: flex;
+    border-top: 2px solid #7868E6;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.action {
+    display: flex;
+}
+
+.action-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 10px;
+    min-width: 80px;
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    background-color:#151515 ;
+    border-radius: 5px;
+}
+
+.action-btn i {
+    font-size: 24px;
+}
+
+.room-right-heading {
+    padding-top: 5px;
+    color: #fff;
+    text-align: center;
+    border-bottom: 2px solid #7868E6;
+    border-right: 2px solid #7868E6;
+}
+
+.room-right-chat {
+    padding-top: 1rem;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+
+.room-right-send {
+    border-top: 2px solid #7868E6;
+    padding: 18px 12px;
+    display: flex;
+}
+
+.btn-teams {
+    color: #fff;
+    background-color: #7868E6;
+    border-color: #7868E6;
+}
+.form-control:focus {
+    border-color: #7868E6;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px #7868E6;
+}
+.btn:focus {
+    border-color: #7868E6;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px #7868E6;
+}
+.unmute, .stop {
+    color: #7868E6;
+}
+.join{
+    color : #91D18B;
+}
+.leave{
+    color : #FB3640;
+}
+.author{
+    color: #7868E6!important;
+}
