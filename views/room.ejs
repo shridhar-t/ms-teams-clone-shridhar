@@ -1,0 +1,49 @@
+<%- include('partials/header') %>
+<div class="room">
+	<div class="room-left">
+		<div class="room-left-video">
+			<div id="video-grid">
+			</div>
+		</div>
+		<div class="room-left-action-bar">
+			<div class="action">
+				<div onclick="muteUnmute()" id="mute-btn" class="action-btn">
+					<i class="fas fa-microphone"></i>
+					<span>Mute</span>
+				</div>
+				<div onclick="playStop()" id="video-btn" class="action-btn">
+					<i class="fas fa-video"></i>
+					<span>Stop Video</span>
+				</div>
+			</div>
+			<div class="action">
+				<div onclick="leaveMeeting()" class="action-btn">
+					<span>Leave Meeting</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="room-right">
+		<div class="room-right-heading">
+			<h4>Chat</h4>
+		</div>
+		<div class="room-right-chat">
+			<ul class="container">
+
+			</ul>
+		</div>
+		<div class="room-right-send">
+			<div class="input-group">
+				<input id="send-message" class="form-control" type="text" placeholder="Type message here..." spellcheck="false" autocomplete="off">
+                <button id="send" type="button" class="btn btn-teams"><i class="fas fa-arrow-right"></i></button>
+            </div>
+		</div>
+	</div>
+</div>
+<script>
+	const ROOM_ID = "<%= roomId %>";
+	const MY_NAME = "<%= name %>";
+	const PEER_SERVER = JSON.parse('<%-JSON.stringify(iceServers)%>');
+	const chats = JSON.parse('<%-JSON.stringify(chats)%>');;
+</script>
+<%- include('partials/footer') %>

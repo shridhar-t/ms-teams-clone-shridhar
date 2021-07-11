@@ -1,0 +1,70 @@
+<%- include('partials/header') %>
+
+<nav class="navbar navbar-dark" style="background-color: #7868E6;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            Teams-Clone
+        </a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col"></div>
+        <div class="col">
+            <h1 class="display-4 team-heading">Create Room</h1>
+            <div class="input-group mb-3">
+                <input id="code" class="form-control" type="text" placeholder="Click on Create Room..." readonly spellcheck="false" autocomplete="off">
+                <button id="copyCode" onclick="copyCode()" disabled="true" type="button" class="btn btn-teams"><i class="fas fa-copy"></i></button>
+            </div>
+            <button id="createRoom" onclick="createRoom()" type="button" class="btn btn-teams">Create Room</button>
+        </div>
+        <div class="col"></div>
+
+    </div>
+    <div class="row">
+
+        <div class="col"></div>
+        <div class="col">
+            <h1 class="display-4 team-heading">Join Room</h1>
+        <div class="form-floating">
+            <input class="form-control" id="name" name="name" placeholder="name" spellcheck="false" autocomplete="off">
+            <label for="name">Name</label>
+        </div>
+        <div class="form-floating">
+            <input class="form-control" id="roomId" name="roomId" placeholder="roomId" spellcheck="false" autocomplete="off">
+            <label for="roomId">Room ID</label>
+        </div>
+        <div>
+            <button onclick="joinRoom()" type="button" class="btn btn-teams">Join Meeting</button>
+            <div class="alert alert-teams" role="alert"></div>
+        </div>
+        </div>
+        <div class="col"></div>
+        
+    </div>
+</div>
+<footer class="text-center text-lg-start bg-light text-muted">
+    <section class="d-flex justify-content-center top-push">
+      <div class="me-5 d-none d-lg-block">
+        <span>Created By Shridhar Thakur</span>
+      </div>
+      <div>
+        <a href="mailto:thakur.shridhar3093@gmail.com" class="me-4 text-reset">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/shridharthakur3093/" class="me-4 text-reset">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/shridhar-t" class="me-4 text-reset">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </section>
+</footer>
+<script>
+    const ROOM_ID = "<%= roomId %>";
+</script>
+<%- include('partials/footer') %>
