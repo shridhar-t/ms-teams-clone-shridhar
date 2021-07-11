@@ -82,7 +82,7 @@ io.on("connection", (socket) => {
 
 		socket.join(roomId);
 
-		socket.to(roomId).broadcast.emit("user-connected", userId);
+		socket.to(roomId).emit("user-connected", userId);
 
 		const joinAlert = {
 			sender : "Admin",
@@ -112,7 +112,7 @@ io.on("connection", (socket) => {
 			};
 	  		io.to(roomId).emit("create-message", leaveAlert);
 			chats[roomId] = [...chats[roomId],leaveAlert];
-	  		socket.to(roomId).broadcast.emit("user-disconnected", userId);
+	  		socket.to(roomId).emit("user-disconnected", userId);
 		});
  	});
 });
