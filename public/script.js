@@ -1,8 +1,3 @@
-const createRoom = () => {
-	$("#code").val(ROOM_ID);
-	$("#createRoom").prop("disabled", true);
-	$("#copyCode").prop("disabled", false);
-};
 const isBlank = (word)=>{
 	if (!word) {
         return true;
@@ -14,6 +9,31 @@ const createAlert = (message)=>{
 	$(".alert").show();
 	$(".alert").fadeOut(2500);
 }
+const createRoom = async () => {
+	try{
+		const response = await fetch("/createRoom", {
+			method: 'POST',
+			mode: 'cors',
+			cache: 'no-cache',
+			credentials: 'same-origin',
+			headers: {
+			  'Content-Type': 'application/json'
+			},
+			redirect: 'follow',
+			referrerPolicy: 'no-referrer',
+			body: JSON.stringify({})
+		});
+		const responseObject = await response.json();
+		if(responseObject.status==="success"){
+			$("#code").val(responseObject.roomId);
+			$("#copyCode").prop("disabled", false);
+		}else{
+			throw new Error("Server Error... Try Again in Sometime");
+		}
+	}catch(err){
+		createAlert(err.message);
+	}
+};
 const joinRoom = async () => {
 	try{
 		const data = {
@@ -33,11 +53,11 @@ const joinRoom = async () => {
 			referrerPolicy: 'no-referrer',
 			body: JSON.stringify(data)
 		});
-		const val = await response.json();
-		if(val.status==="success"){
-			location.href = val.url
+		const responseObject = await response.json();
+		if(responseObject.status==="success"){
+			location.href = responseObject.body
 		}else{
-			throw new Error("Server Error... Try Again in Sometime");
+			throw new Error(responseObject.body);
 		}
 	}catch(err){
 		createAlert(err.message);

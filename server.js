@@ -23,53 +23,71 @@ app.set("view engine", "ejs");
 app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 app.use(express.static(path.join(__dirname,'public')));
 
-//Handle GET '/'
+//Handle GET "/"
 app.get("/", (req, res) => {
-	res.render("lobby",{
-		roomId : nanoid()
-	})
+	res.render("lobby")
 });
 
-//Handle POST '/joinRoom'
+//Handle GET "/room"
+app.get("/room", async (req, res) => {
+	const roomId = req.query.roomId
+	const name = req.query.name
+	try{
+		if(!name||!roomId){
+			throw new Error("Illegal Entry");
+		}
+		if(chats[roomId]===undefined){
+			throw new Error("Illegal Entry");
+		}
+		token = await client.tokens.create()
+		const response = token.iceServers;
+	  	res.render("room", {
+			roomId: roomId ,
+			name: name,
+			iceServers: response,
+			chats: chats[roomId],
+		});
+  	}
+  	catch(err){
+	  	if(err.message==="Illegal Entry") res.redirect("/");
+	  	else res.send(err);
+	}
+});
+
+//Handle POST "/createRoom"
+app.post("/createRoom", (req, res) => {
+	const roomId = nanoid()
+	chats[roomId] = [];
+	res.json({
+		status : "success",
+		roomId : roomId 
+  	});
+});
+
+//Handle POST "/joinRoom"
 app.post("/joinRoom",(req,res)=>{
 	const name = req.body.name
 	const roomId = req.body.roomId
-	const query = querystring.stringify({
-		"name": name,
-		"roomId": roomId
-	});
-	const url = "/room/?"+query;
-	res.json({
-		status : "success",
-		url : url
-  	});
+	try{
+		if(chats[roomId]===undefined){
+			throw new Error("Room ID invalid");
+		}
+		const query = querystring.stringify({
+			"name": name,
+			"roomId": roomId
+		});
+		const url = "/room/?"+query;
+		res.json({
+			status : "success",
+			body : url
+		});
+	}catch(err){
+		res.json({
+			status : "error",
+			body : err.message
+		});
+	}
 })
-
-//Handle GET '/room'
-app.get("/room", async (req, res) => {
-  const roomId = req.query.roomId
-  const name = req.query.name
-  try{
-	if(!name||!roomId){
-		throw new Error("Illegal Entry");
-	}
-	token = await client.tokens.create()
-	if(chats[roomId]===undefined){
-		chats[roomId] = []
-	}
-	const response = token.iceServers;
-	  res.render("room", {
-		roomId: roomId ,
-		name: name,
-		iceServers: response,
-		chats: chats[roomId],
-	});
-  }
-  catch(err){
-	  if(err.message==="Illegal Entry") res.redirect("/");
-	  else res.send(err);
-  }
-});
 
 //Handle web-socket connection
 io.on("connection", (socket) => {
