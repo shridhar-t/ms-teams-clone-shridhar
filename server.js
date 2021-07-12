@@ -89,7 +89,7 @@ app.post("/joinRoom",(req,res)=>{
 	}
 })
 
-//Handle web-socket connection
+//Handle web-socket events
 io.on("connection", (socket) => {
 	socket.on("join-room", (roomId, userId, userName) => {
 
