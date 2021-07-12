@@ -43,24 +43,13 @@ navigator.mediaDevices.getUserMedia({
     	connectToNewUser(userId, stream);
     });
 	//MESSAGE SEND EVENT
-    let text = $("#send-message");
     $("html").keydown((e)=>{
-    	if (e.which == 13 && text.val().length !== 0) {
-    		const message = {
-    			sender: MY_NAME,
-    			body: text.val(),
-    		};
-    		socket.emit("message", message);
-        	text.val("");
+    	if (e.which == 13){
+    		sendMessage();
       	}
     });
     $("#send").click(()=>{ 
-    	const message = {
-        	sender: MY_NAME,
-        	body: text.val(),
-      	};
-      	socket.emit("message", message);
-      	text.val("");
+		sendMessage();
     });
     socket.on("create-message", (message) => {
 		appendToChat(message);
@@ -75,7 +64,30 @@ myPeer.on("open", (id) => {
 socket.on("user-disconnected", (userId) => {
 	if (peers[userId]) peers[userId].close();
 });
-
+//Remove unwanted HTML tags in chat string
+function sanitizeMessage(message){
+	return message.replace(/<style[^>]*>.*<\/style>/gm, '')
+	.replace(/<script[^>]*>.*<\/script>/gm, '')
+	.replace(/<[^>]+>/gm, '')
+	.replace(/([\r\n]+ +)+/gm, '');
+}
+function sendMessage(){
+	let text = $("#send-message");
+	if(text.val().length !==0 ){
+		let messageBody = text.val();
+		messageBody = sanitizeMessage(messageBody);
+		if(messageBody.length ===0 ){
+			text.val("");
+			return;
+		}
+		const message = {
+			sender: MY_NAME,
+			body: messageBody
+		};
+		socket.emit("message", message);
+	}
+	text.val("");
+}
 function connectToNewUser(userId, stream) {
 	const call = myPeer.call(userId, stream);
 	const video = document.createElement("video");

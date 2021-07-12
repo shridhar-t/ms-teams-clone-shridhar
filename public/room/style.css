@@ -42,7 +42,10 @@ ul{
     display: flex;
     flex-direction: column;
 }
-
+.room-id{
+    padding-top: 1rem;
+    color:#7868E6;
+}
 .room-left-video {
     flex-grow: 1;
     background-color: black;
