@@ -20,4 +20,4 @@ Step 1 : Clone or download the repository.<br />Step 2 : Run "npm install" in th
 
 ### More Informations :
 
-For more informations like features, technologies used, project workflow, server routes, webSocket events, utility functions, project directory, agile methodology used... check out the "documentation.pdf" file in this repo.
+For more informations like features, technologies used, agile methodology, project workflow, server routes, webSocket events, utility functions, project directory... check out the "documentation.pdf" file in this repo.
