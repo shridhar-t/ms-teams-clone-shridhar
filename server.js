@@ -9,15 +9,10 @@ const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const client = require("twilio")(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
 const { nanoid } = require("nanoid");
+const chatUtil = require("./utilities/chatUtil");
 
 //For chat persistence
 const chats = {};
-
-//Utility Date Function
-function getUTCDate(){
-	const now = new Date();
-	return now.toUTCString();
-}
 
 //Setting up static serve and request parsing middleware  
 app.use(express.urlencoded({
@@ -87,38 +82,39 @@ io.on("connection", (socket) => {
 		const joinAlert = {
 			sender : "Admin",
 			body : `${userName} has joined`,
-			date : getUTCDate(),
+			date : chatUtil.getUTCDate(),
 			control : 1
 		};
 	  	io.to(roomId).emit("create-message", joinAlert);
 		chats[roomId] = [...chats[roomId],joinAlert];
+		chatUtil.chatCleanup(chats[roomId]);
 
 		socket.on("message", (message) => {
-			message["date"] = getUTCDate(); 
+			message["date"] = chatUtil.getUTCDate(); 
 			message["control"] = 0;
 	  		io.to(roomId).emit("create-message", message);
 			chats[roomId] = [...chats[roomId],message];
-			if(chats[roomId].length >= 100){
-				chats[roomId] = [];
-			}
+			chatUtil.chatCleanup(chats[roomId]);
 		});
 
 		socket.on("disconnect", () => {
+	  		socket.to(roomId).emit("user-disconnected", userId);
+			
 			const leaveAlert = {
 				sender : "Admin",
 				body : `${userName} has left`,
-				date : getUTCDate(),
+				date : chatUtil.getUTCDate(),
 				control : 2,
 			};
-	  		io.to(roomId).emit("create-message", leaveAlert);
+			io.to(roomId).emit("create-message", leaveAlert);
 			chats[roomId] = [...chats[roomId],leaveAlert];
-	  		socket.to(roomId).emit("user-disconnected", userId);
+			chatUtil.chatCleanup(chats[roomId]);
 		});
  	});
 });
 
 //Handle 404
-app.get('*', (req, res) => {
+app.get("*", (req, res) => {
 	res.redirect("/");
 });
 server.listen(process.env.PORT || 3000,()=>{
