@@ -1,10 +1,10 @@
 # MS Teams Clone
 
-## Link : 
+### Link : 
 
 https://ms-teams-clone-shridhar.herokuapp.com/
 
-## Developed by :
+### Developed by :
 
 Name : Shridhar Thakur<br />
 Email : thakur.shridhar3093@gmail.com <br />College : Birla Institute of Technology, Mesra <br />Branch : Information Technology (B.Tech.)<br />Graduation : 2023<br />
@@ -15,9 +15,9 @@ To build this application locally you will need to have your own twilio "ACCOUNT
 
 ### How to Build Your Own ?
 
-BEGIN <br /><br />Step 1 : Clone or download the repository. <br />Step 2 : Run "npm install" in the repo's root directory. <br />Step 3 : Create a ".env" file in the repo's root directory. <br />Step 4 : Copy paste these lines in ".env file" <br />`ACCOUNT_SID=<Twilio-Account-Sid>
-AUTH_TOKEN=<Twilio-Auth-Token>` <br />Step 5 : Run "node server.js" in the repo's root directory. <br />Step 6 : Navigate to "http://localhost:3000/"on web browser.<br /><br />END
+Step 1 : Clone or download the repository. <br />Step 2 : Run "npm install" in the repo's root directory. <br />Step 3 : Create a ".env" file in the repo's root directory. <br />Step 4 : Copy paste these lines in ".env file" <br />`ACCOUNT_SID=<Twilio-Account-Sid>`<br />
+`AUTH_TOKEN=<Twilio-Auth-Token>`<br />Step 5 : Run "node server.js" in the repo's root directory. <br />Step 6 : Navigate to "http://localhost:3000/" on web browser.
 
 ### More Informations :
 
-For more informations like features, technologies used, project workflow, server routes, webSocket events, utility functions, project directory, agile techniques used... check out the "documentation.pdf" file in this repo.
+For more informations like features, technologies used, project workflow, server routes, webSocket events, utility functions, project directory, agile methodology used... check out the "documentation.pdf" file in this repo.
