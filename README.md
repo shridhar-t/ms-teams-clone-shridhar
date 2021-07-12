@@ -15,7 +15,7 @@ To build this application locally you will need to have your own twilio "ACCOUNT
 
 ### How to Build Your Own ?
 
-Step 1 : Clone or download the repository. <br />Step 2 : Run "npm install" in the repo's root directory. <br />Step 3 : Create a ".env" file in the repo's root directory. <br />Step 4 : Copy paste these lines in ".env file" <br />`ACCOUNT_SID=<Twilio-Account-Sid>`<br />
+Step 1 : Clone or download the repository.<br />Step 2 : Run "npm install" in the repo's root directory.<br />Step 3 : Create a ".env" file in the repo's root directory.<br />Step 4 : Copy paste these lines in ".env file" with your twilio's credentials<br />`ACCOUNT_SID=<Twilio-Account-Sid>`<br />
 `AUTH_TOKEN=<Twilio-Auth-Token>`<br />Step 5 : Run "node server.js" in the repo's root directory. <br />Step 6 : Navigate to "http://localhost:3000/" on web browser.
 
 ### More Informations :
