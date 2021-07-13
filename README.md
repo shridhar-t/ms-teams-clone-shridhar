@@ -1,8 +1,10 @@
 # MS Teams Clone
 
+Created During Microsoft Engage 2021 Mentorship Program.
+
 ### Links : 
 
-Project Link : https://ms-teams-clone-shridhar.herokuapp.com/<br />Video Demo Link : https://www.youtube.com/watch?v=VrDkQ-RqWoA<br />Documentation Link : https://drive.google.com/file/d/1JrG-Vcm9vvH0OCCRLnLy0EWbxQXN62-9/view?usp=sharing<br />Event Link : https://microsoft.acehacker.com/engage2021/
+Project Link : https://ms-teams-clone-shridhar.herokuapp.com/<br />Video Demo Link : https://www.youtube.com/watch?v=VrDkQ-RqWoA<br />Documentation Link : https://drive.google.com/file/d/1JrG-Vcm9vvH0OCCRLnLy0EWbxQXN62-9/view?usp=sharing<br />
 
 ### Developed by :
 
